@@ -2,6 +2,7 @@ import React from 'react';
 import { supabase } from './lib/supabase';
 import FormularioContacto from './components/FormularioContacto';
 import Reels from './components/Reels';
+import Galeria from './components/Galeria';
 
 // Fuerza a Vercel a consultar la base de datos en tiempo real
 export const revalidate = 0; 
@@ -54,14 +55,20 @@ export default async function InicioSobredosis() {
         )}
       </section>
 
+      {/* Galería de Fotos */}
+      <section className="py-16 max-w-6xl mx-auto text-center border-t border-gray-800">
+        <h2 className="text-4xl font-bold mb-8 text-white">NUESTRAS FOTOS</h2>
+        <Galeria />
+      </section>
+
       {/* Sección de Reels / Videos Cortos */}
-  <section className="py-16 max-w-5xl mx-auto text-center border-t border-gray-800 overflow-hidden">
-    <h2 className="text-4xl font-bold mb-8 text-white">REELS DE LA BANDA</h2>
-    <Reels />
-  </section>
+      <section className="py-16 max-w-5xl mx-auto text-center border-t border-gray-800 overflow-hidden">
+        <h2 className="text-4xl font-bold mb-8 text-white">REELS DE LA BANDA</h2>
+        <Reels />
+      </section>
 
       {/* Contacto Rápido */}
-      <section className="py-16 bg-gray-900 text-center">
+      <section className="py-16 bg-gray-900 text-center border-t border-gray-800">
         <h2 className="text-3xl font-bold mb-6 text-white">CONTACTO Y MENSAJES</h2>
         <FormularioContacto />
       </section>
