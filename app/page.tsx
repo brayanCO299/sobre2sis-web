@@ -1,6 +1,7 @@
 import React from 'react';
 import { supabase } from './lib/supabase';
 import FormularioContacto from './components/FormularioContacto';
+import Reels from './components/Reels';
 
 // Fuerza a Vercel a consultar la base de datos en tiempo real
 export const revalidate = 0; 
@@ -52,6 +53,12 @@ export default async function InicioSobredosis() {
           <p className="text-gray-400 text-xl font-bold">Pronto anunciaremos nuevas fechas...</p>
         )}
       </section>
+
+      {/* Sección de Reels / Videos Cortos */}
+  <section className="py-16 max-w-5xl mx-auto text-center border-t border-gray-800 overflow-hidden">
+    <h2 className="text-4xl font-bold mb-8 text-white">REELS DE LA BANDA</h2>
+    <Reels />
+  </section>
 
       {/* Contacto Rápido */}
       <section className="py-16 bg-gray-900 text-center">
