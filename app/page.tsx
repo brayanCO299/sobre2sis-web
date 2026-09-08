@@ -1,5 +1,6 @@
 import React from 'react';
 import { supabase } from './lib/supabase';
+import FormularioContacto from './components/FormularioContacto';
 
 // Fuerza a Vercel a consultar la base de datos en tiempo real
 export const revalidate = 0; 
@@ -50,6 +51,12 @@ export default async function InicioSobredosis() {
         ) : (
           <p className="text-gray-400 text-xl font-bold">Pronto anunciaremos nuevas fechas...</p>
         )}
+      </section>
+
+      {/* Contacto Rápido */}
+      <section className="py-16 bg-gray-900 text-center">
+        <h2 className="text-3xl font-bold mb-6 text-white">CONTACTO Y MENSAJES</h2>
+        <FormularioContacto />
       </section>
     </main>
   );
