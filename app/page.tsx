@@ -5,6 +5,7 @@ import FormularioContacto from './components/FormularioContacto';
 import Reels from './components/Reels';
 import Galeria from './components/Galeria';
 import { motion } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 
 export default function InicioSobredosis() {
   const [evento, setEvento] = useState<any>(null);
@@ -26,6 +27,7 @@ export default function InicioSobredosis() {
 
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
+      <Toaster position="bottom-center" reverseOrder={false} />
       
       {/* Hero Section */}
       <motion.header 
@@ -67,7 +69,6 @@ export default function InicioSobredosis() {
               </p>
               <p className="text-gray-400 mb-8 text-lg italic leading-relaxed">"{evento.descripcion}"</p>
               
-              {/* Botón de WhatsApp Interactivo */}
               <a 
                 href={`https://wa.me/51999999999?text=¡Hola!%20Quiero%20reservar%20entradas%20para%20${encodeURIComponent(evento.titulo)}`}
                 target="_blank" 
