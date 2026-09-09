@@ -3,6 +3,7 @@ import { supabase } from './lib/supabase';
 import FormularioContacto from './components/FormularioContacto';
 import Reels from './components/Reels';
 import Galeria from './components/Galeria';
+import BotonWhatsApp from './components/BotonWhatsApp';
 
 export const revalidate = 0; 
 
@@ -16,9 +17,9 @@ export default async function InicioSobredosis() {
   const evento = eventos?.[0];
 
   return (
-    <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
+    <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden relative">
       
-      <header className="flex flex-col items-center justify-center py-24 bg-gradient-to-b from-gray-900 to-black">
+      <header className="flex flex-col items-center justify-center py-24 bg-gradient-to-b from-gray-900 to-black animate-fade-in-down">
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-red-600 mb-4 drop-shadow-lg">
           SOBRE2SIS
         </h1>
@@ -31,7 +32,7 @@ export default async function InicioSobredosis() {
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">PRÓXIMO EVENTO</h2>
         
         {evento ? (
-          <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-gray-800 hover:border-red-900/50 transition duration-500">
+          <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-gray-800 hover:border-red-900/50 transition duration-500 hover:shadow-red-900/20">
             <div 
               className="h-72 bg-gray-800 flex items-center justify-center bg-cover bg-center" 
               style={{ backgroundImage: `url(${evento.imagen_url || ''})` }}
@@ -74,6 +75,9 @@ export default async function InicioSobredosis() {
         <h2 className="text-3xl font-bold mb-8 text-white tracking-wide">CONTACTO Y MENSAJES</h2>
         <FormularioContacto />
       </section>
+
+      {/* Botón flotante siempre visible */}
+      <BotonWhatsApp />
     </main>
   );
 }
