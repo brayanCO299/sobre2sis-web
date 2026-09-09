@@ -1,61 +1,37 @@
-"use client";
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { supabase } from './lib/supabase';
 import FormularioContacto from './components/FormularioContacto';
 import Reels from './components/Reels';
 import Galeria from './components/Galeria';
-import { motion } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
 
-export default function InicioSobredosis() {
-  const [evento, setEvento] = useState<any>(null);
+export const revalidate = 0; 
 
-  useEffect(() => {
-    async function fetchEvento() {
-      const { data: eventos } = await supabase
-        .from('eventos')
-        .select('*')
-        .order('fecha', { ascending: true })
-        .limit(1);
-      
-      if (eventos && eventos.length > 0) {
-        setEvento(eventos[0]);
-      }
-    }
-    fetchEvento();
-  }, []);
+export default async function InicioSobredosis() {
+  const { data: eventos } = await supabase
+    .from('eventos')
+    .select('*')
+    .order('fecha', { ascending: true })
+    .limit(1);
+
+  const evento = eventos?.[0];
 
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
-      <Toaster position="bottom-center" reverseOrder={false} />
       
-      {/* Hero Section */}
-      <motion.header 
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="flex flex-col items-center justify-center py-24 bg-gradient-to-b from-gray-900 to-black"
-      >
+      <header className="flex flex-col items-center justify-center py-24 bg-gradient-to-b from-gray-900 to-black">
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-red-600 mb-4 drop-shadow-lg">
           SOBRE2SIS
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 uppercase tracking-widest text-center px-4 font-light">
           El Rock No Muere. Se Transforma.
         </p>
-      </motion.header>
+      </header>
 
-      {/* Próximo Evento */}
-      <motion.section 
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="py-16 px-4 max-w-4xl mx-auto text-center border-t border-gray-800"
-      >
+      <section className="py-16 px-4 max-w-4xl mx-auto text-center border-t border-gray-800">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">PRÓXIMO EVENTO</h2>
         
         {evento ? (
-          <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-gray-800 transform transition duration-500 hover:shadow-red-900/20 hover:border-red-900/50">
+          <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-gray-800 hover:border-red-900/50 transition duration-500">
             <div 
               className="h-72 bg-gray-800 flex items-center justify-center bg-cover bg-center" 
               style={{ backgroundImage: `url(${evento.imagen_url || ''})` }}
@@ -70,7 +46,7 @@ export default function InicioSobredosis() {
               <p className="text-gray-400 mb-8 text-lg italic leading-relaxed">"{evento.descripcion}"</p>
               
               <a 
-                href={`https://wa.me/51999999999?text=¡Hola!%20Quiero%20reservar%20entradas%20para%20${encodeURIComponent(evento.titulo)}`}
+                href={`https://wa.me/51999999999?text=¡Hola!%20Quiero%20reservar%20entradas%20para%20${evento.titulo}`}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-red-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-red-700 hover:scale-105 transition-all duration-300 inline-block shadow-lg shadow-red-600/30"
@@ -82,43 +58,22 @@ export default function InicioSobredosis() {
         ) : (
           <p className="text-gray-400 text-xl font-bold">Pronto anunciaremos nuevas fechas...</p>
         )}
-      </motion.section>
+      </section>
 
-      {/* Galería de Fotos */}
-      <motion.section 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="py-16 max-w-6xl mx-auto text-center border-t border-gray-800"
-      >
+      <section className="py-16 max-w-6xl mx-auto text-center border-t border-gray-800">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">NUESTRAS FOTOS</h2>
         <Galeria />
-      </motion.section>
+      </section>
 
-      {/* Reels */}
-      <motion.section 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="py-16 max-w-5xl mx-auto text-center border-t border-gray-800 overflow-hidden"
-      >
+      <section className="py-16 max-w-5xl mx-auto text-center border-t border-gray-800 overflow-hidden">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">REELS DE LA BANDA</h2>
         <Reels />
-      </motion.section>
+      </section>
 
-      {/* Contacto */}
-      <motion.section 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="py-20 bg-gray-900 text-center border-t border-gray-800"
-      >
+      <section className="py-20 bg-gray-900 text-center border-t border-gray-800">
         <h2 className="text-3xl font-bold mb-8 text-white tracking-wide">CONTACTO Y MENSAJES</h2>
         <FormularioContacto />
-      </motion.section>
+      </section>
     </main>
   );
 }
