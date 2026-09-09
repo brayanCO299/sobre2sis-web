@@ -1,5 +1,6 @@
 import React from 'react';
 import { supabase } from '../lib/supabase';
+import Image from 'next/image';
 
 export default async function Galeria() {
     const { data: fotos, error } = await supabase
@@ -14,10 +15,12 @@ export default async function Galeria() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 pb-8">
             {fotos.map((foto) => (
                 <div key={foto.id} className="relative group overflow-hidden rounded-xl border border-gray-800 shadow-2xl h-80">
-                    <img
+                    <Image
                         src={foto.foto_url}
-                        alt={foto.descripcion || "Foto de Sobredosis"}
-                        className="w-full h-full object-cover transition duration-500 group-hover:scale-110"
+                        alt={foto.descripcion || "Foto de la banda"}
+                        fill
+                        className="object-cover transition duration-500 group-hover:scale-110"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center p-4">
                         <p className="text-white text-center font-bold text-lg">{foto.descripcion}</p>
