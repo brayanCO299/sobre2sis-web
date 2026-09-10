@@ -20,12 +20,14 @@ export default async function Reels() {
                     key={reel.id}
                     className="min-w-[300px] w-[300px] h-[533px] bg-gray-900 rounded-xl overflow-hidden shadow-2xl snap-center relative border border-gray-800 flex-shrink-0"
                 >
-                    {/* Etiqueta nativa de video HTML5 */}
+                    {/* Etiqueta HTML5 Optimizada para Autoplay */}
                     <video
                         src={reel.video_url}
                         className="w-full h-full object-cover"
-                        controls
-                        preload="metadata"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
                         controlsList="nodownload"
                     />
                     <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/80 to-transparent p-4 pointer-events-none">
