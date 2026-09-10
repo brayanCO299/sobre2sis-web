@@ -1,11 +1,12 @@
 import React from 'react';
 import { supabase } from './lib/supabase';
+import Navbar from './components/Navbar';
 import FormularioContacto from './components/FormularioContacto';
 import Reels from './components/Reels';
 import Galeria from './components/Galeria';
 import Countdown from './components/Countdown';
 import BotonWhatsApp from './components/BotonWhatsApp';
-
+import Footer from './components/Footer';
 
 export const revalidate = 0;
 
@@ -20,8 +21,9 @@ export default async function InicioSobredosis() {
 
   return (
     <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden relative">
+      <Navbar />
 
-      <header className="flex flex-col items-center justify-center py-24 bg-gradient-to-b from-gray-900 to-black animate-fade-in-down">
+      <header className="flex flex-col items-center justify-center pt-32 pb-24 bg-gradient-to-b from-gray-900 to-black animate-fade-in-down">
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-red-600 mb-4 drop-shadow-lg">
           SOBRE2SIS
         </h1>
@@ -30,7 +32,7 @@ export default async function InicioSobredosis() {
         </p>
       </header>
 
-      <section className="py-16 px-4 max-w-4xl mx-auto text-center border-t border-gray-800">
+      <section id="eventos" className="py-16 px-4 max-w-4xl mx-auto text-center border-t border-gray-800">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">PRÓXIMO EVENTO</h2>
 
         {evento ? (
@@ -67,21 +69,21 @@ export default async function InicioSobredosis() {
         )}
       </section>
 
-      <section className="py-16 max-w-6xl mx-auto text-center border-t border-gray-800">
+      <section id="fotos" className="py-16 max-w-6xl mx-auto text-center border-t border-gray-800">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">NUESTRAS FOTOS</h2>
         <Galeria />
       </section>
 
-      <section className="py-16 max-w-5xl mx-auto text-center border-t border-gray-800 overflow-hidden">
+      <section id="reels" className="py-16 max-w-5xl mx-auto text-center border-t border-gray-800 overflow-hidden">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">REELS DE LA BANDA</h2>
         <Reels />
       </section>
 
-      <section className="py-20 bg-gray-900 text-center border-t border-gray-800">
+      <section id="contacto" className="py-20 bg-gray-900 text-center border-t border-gray-800">
         <h2 className="text-3xl font-bold mb-8 text-white tracking-wide">CONTACTO Y MENSAJES</h2>
         <FormularioContacto />
       </section>
-
+      <Footer />
       {/* Botón flotante siempre visible */}
       <BotonWhatsApp />
     </main>
