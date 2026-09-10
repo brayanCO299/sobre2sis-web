@@ -6,6 +6,7 @@ import Reels from './components/Reels';
 import Galeria from './components/Galeria';
 import Countdown from './components/Countdown';
 import BotonWhatsApp from './components/BotonWhatsApp';
+import ClubFans from './components/ClubFans';
 import Footer from './components/Footer';
 
 export const revalidate = 0;
@@ -77,6 +78,12 @@ export default async function InicioSobredosis() {
       <section id="reels" className="py-16 max-w-5xl mx-auto text-center border-t border-gray-800 overflow-hidden">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">REELS DE LA BANDA</h2>
         <Reels />
+      </section>
+
+      {/* Sección Fans */}
+      <section id="fans" className="py-20 bg-black text-center border-t border-gray-800">
+        <h2 className="text-4xl font-black mb-8 text-white tracking-wide uppercase">Club de Fans</h2>
+        <ClubFans />
       </section>
 
       <section id="contacto" className="py-20 bg-gray-900 text-center border-t border-gray-800">
