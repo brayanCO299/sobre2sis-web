@@ -8,12 +8,10 @@ export default function Navbar() {
                     <a href="#">SOBRE2SIS</a>
                 </span>
                 <div className="hidden md:flex gap-8 font-bold text-sm tracking-widest text-gray-300">
-                    <a href="#eventos" className="hover:text-white transition-colors">EVENTOS</a>
-                    <a href="#fotos" className="hover:text-white transition-colors">FOTOS</a>
-                    <a href="#fans" className="hover:text-white transition-colors">FANS</a>
-                    <a href="#reels" className="hover:text-white transition-colors">REELS</a>
-                    <a href="#contacto" className="hover:text-white transition-colors">CONTACTO</a>
-                    
+                    <a href="/" className="hover:text-white transition-colors">INICIO</a>
+                    <a href="/#fotos" className="hover:text-white transition-colors">FOTOS</a>
+                    <a href="/fans" className="hover:text-white transition-colors text-red-500">CLUB DE FANS</a>
+                    <a href="/contacto" className="hover:text-white transition-colors">CONTACTO</a>
                 </div>
             </div>
         </nav>
