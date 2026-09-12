@@ -4,7 +4,7 @@ import React from 'react';
 export default function BotonWhatsApp() {
     return (
         <a
-            href="https://wa.me/51999999999?text=¡Hola!%20Vengo%20de%20la%20página%20web%20y%20quiero%20más%20información%20sobre%20la%20banda."
+            href="https://wa.me/51945250393?text=¡Hola!%20Vengo%20de%20la%20página%20web%20y%20quiero%20más%20información%20sobre%20la%20banda."
             target="_blank"
             rel="noopener noreferrer"
             className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 z-50 flex items-center justify-center group border-2 border-green-400"

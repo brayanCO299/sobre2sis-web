@@ -21,10 +21,6 @@ export default async function InicioSobredosis() {
         </p>
       </header>
 
-      {/* Los Reels ahora son protagonistas arriba */}
-      <section className="pb-16 max-w-5xl mx-auto text-center overflow-hidden">
-        <Reels />
-      </section>
 
       <section id="eventos" className="py-16 px-4 max-w-4xl mx-auto text-center border-t border-gray-800">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">PRÓXIMO EVENTO</h2>
@@ -36,7 +32,7 @@ export default async function InicioSobredosis() {
               <p className="text-gray-300 text-xl font-medium tracking-wide">🗓️ {evento.fecha} | 📍 {evento.lugar}</p>
               <Countdown fechaEvento={evento.fecha} />
               <p className="text-gray-400 mb-8 text-lg italic leading-relaxed">"{evento.descripcion}"</p>
-              <a href={`https://wa.me/51999999999?text=¡Hola!%20Quiero%20reservar%20entradas%20para%20${evento.titulo}`} target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-red-700 hover:scale-105 transition-all duration-300 inline-block">
+              <a href={`https://wa.me/51945250393?text=¡Hola!%20Quiero%20reservar%20entradas%20para%20${evento.titulo}`} target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-red-700 hover:scale-105 transition-all duration-300 inline-block">
                 AGENDAR RESERVA
               </a>
             </div>
