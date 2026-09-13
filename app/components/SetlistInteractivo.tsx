@@ -30,7 +30,8 @@ export default function SetlistInteractivo() {
 
     useEffect(() => {
         cargarVotos();
-        if (localStorage.getItem('voto_sobre2sis')) setYaVoto(true);
+        // Cambiamos el nombre de la variable local para reiniciar el estado oculto
+        if (localStorage.getItem('voto_sobre2sis_v2')) setYaVoto(true);
     }, []);
 
     const emitirVoto = async (cancion: string) => {
@@ -38,14 +39,24 @@ export default function SetlistInteractivo() {
             toast.error('¡Ya votaste! 🎸');
             return;
         }
+
+        // Actualización visual inmediata
         setVotos(prev => ({ ...prev, [cancion]: (prev[cancion] || 0) + 1 }));
         setTotalVotos(prev => prev + 1);
         setYaVoto(true);
-        localStorage.setItem('voto_sobre2sis', 'true');
+        localStorage.setItem('voto_sobre2sis_v2', 'true');
 
         const { error } = await supabase.from('votos_setlist').insert([{ cancion }]);
-        if (error) toast.error('Error de conexión.');
-        else toast.success('¡Voto registrado!');
+
+        if (error) {
+            // Reversión si Supabase falla (RLS bloqueado)
+            toast.error('Error al guardar el voto.');
+            setYaVoto(false);
+            localStorage.removeItem('voto_sobre2sis_v2');
+            cargarVotos();
+        } else {
+            toast.success('¡Voto registrado!');
+        }
     };
 
     return (
@@ -65,7 +76,7 @@ export default function SetlistInteractivo() {
                                 {!yaVoto ? (
                                     <button
                                         onClick={() => emitirVoto(cancion)}
-                                        className="bg-red-600 text-white font-black px-4 py-2 rounded text-xs tracking-widest active:scale-95 transition-transform"
+                                        className="bg-red-600 text-white font-black px-4 py-2 rounded text-xs tracking-widest active:scale-95 transition-transform cursor-pointer"
                                     >
                                         VOTAR
                                     </button>

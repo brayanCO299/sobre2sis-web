@@ -31,12 +31,14 @@ export default function MuroGritos() {
         const { error } = await supabase.from('muro_gritos').insert([{ nombre, mensaje }]);
 
         if (error) {
-            toast.error('Error al enviar el mensaje.');
+            console.error("Detalle del error:", error);
+            // Esto mostrará el mensaje de error exacto de Supabase en tu pantalla
+            toast.error(`Error: ${error.message}`);
         } else {
             toast.success('¡Grito publicado!');
             setNombre('');
             setMensaje('');
-            cargarMensajes();
+            cargarMensajes(); // Recarga el muro al instante
         }
     };
 
