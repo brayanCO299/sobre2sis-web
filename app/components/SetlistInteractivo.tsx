@@ -46,15 +46,20 @@ export default function SetlistInteractivo() {
             return;
         }
 
+        // 1. Actualización visual instantánea (Suma el voto de inmediato)
+        setVotos(prev => ({ ...prev, [cancion]: (prev[cancion] || 0) + 1 }));
+        setTotalVotos(prev => prev + 1);
+        setYaVoto(true);
+        localStorage.setItem('voto_sobre2sis', 'true');
+
+        // 2. Guardado en la base de datos en segundo plano
         const { error } = await supabase.from('votos_setlist').insert([{ cancion }]);
 
         if (error) {
-            toast.error('Hubo un error al votar.');
+            toast.error('Hubo un error de conexión al guardar tu voto.');
         } else {
             toast.success('¡Voto registrado con éxito!');
-            localStorage.setItem('voto_sobre2sis', 'true');
-            setYaVoto(true);
-            cargarVotos();
+            cargarVotos(); // Sincroniza datos por si alguien más votó al mismo tiempo
         }
     };
 
