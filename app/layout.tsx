@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BotonWhatsApp from "./components/BotonWhatsApp";
+import { Toaster } from "react-hot-toast"; // <-- IMPORTACIÓN NUEVA
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} bg-black text-white relative`}>
         <Navbar />
         {children}
+        <Toaster position="bottom-center" /> {/* <-- COMPONENTE NUEVO */}
         <BotonWhatsApp />
         <Footer />
       </body>
