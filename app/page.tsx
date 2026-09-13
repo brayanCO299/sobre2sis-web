@@ -3,6 +3,8 @@ import { supabase } from './lib/supabase';
 import Reels from './components/Reels';
 import Galeria from './components/Galeria';
 import Countdown from './components/Countdown';
+import SetlistInteractivo from './components/SetlistInteractivo';
+import LogoAnimado from './components/LogoAnimado';
 
 export const revalidate = 0; 
 
@@ -13,9 +15,7 @@ export default async function InicioSobredosis() {
   return (
     <main className="overflow-x-hidden">
       <header className="flex flex-col items-center justify-center pt-32 pb-16 bg-gradient-to-b from-gray-900 to-black">
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-red-600 mb-4 drop-shadow-lg">
-          SOBRE2SIS
-        </h1>
+        <LogoAnimado />
         <p className="text-xl md:text-2xl text-gray-300 uppercase tracking-widest text-center px-4 font-light">
           El Rock No Muere. Se Transforma.
         </p>
@@ -31,6 +31,7 @@ export default async function InicioSobredosis() {
               <h3 className="text-4xl font-black text-red-500 mb-4">{evento.titulo}</h3>
               <p className="text-gray-300 text-xl font-medium tracking-wide">🗓️ {evento.fecha} | 📍 {evento.lugar}</p>
               <Countdown fechaEvento={evento.fecha} />
+              <SetlistInteractivo />
               <p className="text-gray-400 mb-8 text-lg italic leading-relaxed">"{evento.descripcion}"</p>
               <a href={`https://wa.me/51945250393?text=¡Hola!%20Quiero%20reservar%20entradas%20para%20${evento.titulo}`} target="_blank" rel="noopener noreferrer" className="bg-red-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-red-700 hover:scale-105 transition-all duration-300 inline-block">
                 AGENDAR RESERVA

@@ -11,6 +11,7 @@ export default function Navbar() {
                     <a href="/" className="hover:text-white transition-colors">INICIO</a>
                     <a href="/#fotos" className="hover:text-white transition-colors">FOTOS</a>
                     <a href="/reels" className="hover:text-white transition-colors">REELS</a>
+                    <a href="/muro" className="hover:text-white transition-colors">MURO</a>
                     <a href="/fans" className="hover:text-white transition-colors text-red-500">CLUB DE FANS</a>
                     <a href="/contacto" className="hover:text-white transition-colors">CONTACTO</a>
                 </div>
