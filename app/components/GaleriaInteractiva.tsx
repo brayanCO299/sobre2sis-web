@@ -1,58 +1,60 @@
 "use client";
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 export default function GaleriaInteractiva({ fotos }: { fotos: any[] }) {
-    const [fotoSeleccionada, setFotoSeleccionada] = useState<any>(null);
+    // Estado para controlar qué foto está abierta en pantalla completa
+    const [fotoAmpliada, setFotoAmpliada] = useState<any | null>(null);
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 pb-8">
+            {/* 1. Cuadrícula de fotos (Miniaturas) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {fotos.map((foto) => (
                     <div
                         key={foto.id}
-                        className="relative group overflow-hidden rounded-xl border border-gray-800 shadow-2xl h-80 cursor-pointer"
-                        onClick={() => setFotoSeleccionada(foto)}
+                        className="relative h-64 md:h-80 w-full bg-black rounded-xl overflow-hidden shadow-lg border border-gray-800 cursor-pointer group flex items-center justify-center"
+                        onClick={() => setFotoAmpliada(foto)}
                     >
-                        <Image
+                        <img
                             src={foto.foto_url}
-                            alt={foto.descripcion || "Foto de la banda"}
-                            fill
-                            className="object-cover transition duration-500 group-hover:scale-110"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            alt={foto.descripcion || 'Foto de SOBRE2SIS'}
+                            // object-contain garantiza que la foto no se recorte nunca
+                            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                         />
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center p-4">
-                            <p className="text-white text-center font-bold text-lg">{foto.descripcion}</p>
-                        </div>
                     </div>
                 ))}
             </div>
 
-            {/* Modal de Pantalla Completa (Lightbox) */}
-            {fotoSeleccionada && (
+            {/* 2. Lightbox (Visor de pantalla completa) */}
+            {fotoAmpliada && (
                 <div
-                    className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-4 animate-fade-in"
-                    onClick={() => setFotoSeleccionada(null)}
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-10 backdrop-blur-md transition-opacity"
+                    onClick={() => setFotoAmpliada(null)} // Cierra al hacer clic en el fondo oscuro
                 >
-                    <div className="relative max-w-5xl w-full h-[80vh]">
-                        <Image
-                            src={fotoSeleccionada.foto_url}
-                            alt={fotoSeleccionada.descripcion || "Foto ampliada"}
-                            fill
-                            className="object-contain"
-                        />
-                        <button
-                            className="absolute top-0 right-4 text-white text-5xl font-bold hover:text-red-500 z-50 transition-colors"
-                            onClick={() => setFotoSeleccionada(null)}
-                        >
-                            &times;
-                        </button>
-                        {fotoSeleccionada.descripcion && (
-                            <p className="absolute bottom-4 left-0 right-0 text-center text-white text-xl font-bold drop-shadow-md">
-                                {fotoSeleccionada.descripcion}
-                            </p>
-                        )}
-                    </div>
+                    {/* Botón de cerrar */}
+                    <button
+                        className="absolute top-6 right-6 text-white text-5xl font-light hover:text-red-500 z-[110] transition-colors"
+                        onClick={() => setFotoAmpliada(null)}
+                    >
+                        &times;
+                    </button>
+
+                    {/* Imagen en tamaño real */}
+                    <img
+                        src={fotoAmpliada.foto_url}
+                        alt={fotoAmpliada.descripcion}
+                        className="max-w-full max-h-full object-contain rounded-lg shadow-2xl drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                        onClick={(e) => e.stopPropagation()} // Evita que se cierre al hacer clic directo en la foto
+                    />
+
+                    {/* Descripción flotante (Si existe) */}
+                    {fotoAmpliada.descripcion && (
+                        <div className="absolute bottom-10 left-0 right-0 text-center pointer-events-none px-4">
+                            <span className="bg-black/80 text-white px-6 py-3 rounded-full font-bold tracking-widest text-sm md:text-base border border-gray-700 inline-block shadow-lg">
+                                {fotoAmpliada.descripcion}
+                            </span>
+                        </div>
+                    )}
                 </div>
             )}
         </>
