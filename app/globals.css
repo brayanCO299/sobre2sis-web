@@ -44,3 +44,18 @@ body {
 .animacion-temblor {
   animation: temblor 0.4s infinite;
 }
+
+@keyframes levitar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.logo-flotante {
+  animation: levitar 4s ease-in-out infinite;
+}
+
+/* Opcional: Desfasar la animación para que no se muevan todos al mismo tiempo */
+.logo-flotante:nth-child(even) {
+  animation-delay: 2s;
+}

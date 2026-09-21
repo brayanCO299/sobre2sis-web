@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BotonWhatsApp from "./components/BotonWhatsApp";
 import { Toaster } from "react-hot-toast"; // <-- IMPORTACIÓN NUEVA
+import AuspiciadoresFlotantes from "./components/AuspiciadoresFlotantes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className="scroll-smooth">
       <body className={`${inter.className} bg-black text-white relative`}>
         <Navbar />
+        <AuspiciadoresFlotantes /> {/* <-- AÑADIDO AQUÍ */}
         {children}
-        <Toaster position="bottom-center" /> {/* <-- COMPONENTE NUEVO */}
+        <Toaster position="bottom-center" />
         <BotonWhatsApp />
         <Footer />
       </body>
