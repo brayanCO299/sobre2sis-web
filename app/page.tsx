@@ -1,15 +1,30 @@
 import React from 'react';
 import { supabase } from './lib/supabase';
+import { unstable_noStore as noStore } from 'next/cache'; // IMPORTACIÓN NUEVA PARA ROMPER EL CACHÉ
 import Reels from './components/Reels';
 import Galeria from './components/Galeria';
 import Countdown from './components/Countdown';
 import SetlistInteractivo from './components/SetlistInteractivo';
 import LogoAnimado from './components/LogoAnimado';
+import SociosAliados from './components/SociosAliados'; // INTEGRACIÓN DE MARCAS ALIADAS
 
-export const revalidate = 0; 
+// REEMPLAZAMOS revalidate = 0 POR ESTO PARA FORZAR LA ACTUALIZACIÓN EN TIEMPO REAL
+export const dynamic = 'force-dynamic';
 
 export default async function InicioSobredosis() {
-  const { data: eventos } = await supabase.from('eventos').select('*').order('fecha', { ascending: true }).limit(1);
+  noStore(); // FUNCIÓN PARA EVITAR QUE VERCEL CONGELE LA BASE DE DATOS
+
+  // OBTENEMOS LA FECHA DE HOY
+  const hoy = new Date().toISOString().split('T')[0];
+
+  // CONSULTA CORREGIDA: Trae solo el evento más próximo a partir de hoy
+  const { data: eventos } = await supabase
+    .from('eventos')
+    .select('*')
+    .gte('fecha', hoy)
+    .order('fecha', { ascending: true })
+    .limit(1);
+    
   const evento = eventos?.[0];
 
   return (
@@ -21,8 +36,7 @@ export default async function InicioSobredosis() {
         </p>
       </header>
 
-
-<section id="eventos" className="py-16 px-4 max-w-7xl mx-auto border-t border-gray-800">
+      <section id="eventos" className="py-16 px-4 max-w-7xl mx-auto border-t border-gray-800">
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide text-center">PRÓXIMO EVENTO</h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
@@ -65,6 +79,9 @@ export default async function InicioSobredosis() {
         <h2 className="text-4xl font-bold mb-10 text-white tracking-wide">NUESTRAS FOTOS</h2>
         <Galeria />
       </section>
+
+      {/* MARCAS ALIADAS AL FINAL DE LA PÁGINA */}
+      <SociosAliados />
     </main>
   );
 }
