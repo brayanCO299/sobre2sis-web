@@ -6,7 +6,7 @@ import Galeria from './components/Galeria';
 import Countdown from './components/Countdown';
 import SetlistInteractivo from './components/SetlistInteractivo';
 import LogoAnimado from './components/LogoAnimado';
-import SociosAliados from './components/SociosAliados'; // INTEGRACIÓN DE MARCAS ALIADAS
+import SociosAliados from './components/AuspiciadoresFlotantes';
 
 // REEMPLAZAMOS revalidate = 0 POR ESTO PARA FORZAR LA ACTUALIZACIÓN EN TIEMPO REAL
 export const dynamic = 'force-dynamic';
