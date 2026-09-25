@@ -6,7 +6,6 @@ import Galeria from './components/Galeria';
 import Countdown from './components/Countdown';
 import SetlistInteractivo from './components/SetlistInteractivo';
 import LogoAnimado from './components/LogoAnimado';
-import SociosAliados from './components/AuspiciadoresFlotantes';
 import AuspiciadoresFlotantes from './components/AuspiciadoresFlotantes';
 
 // REEMPLAZAMOS revalidate = 0 POR ESTO PARA FORZAR LA ACTUALIZACIÓN EN TIEMPO REAL
