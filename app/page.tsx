@@ -7,6 +7,7 @@ import Countdown from './components/Countdown';
 import SetlistInteractivo from './components/SetlistInteractivo';
 import LogoAnimado from './components/LogoAnimado';
 import SociosAliados from './components/AuspiciadoresFlotantes';
+import AuspiciadoresFlotantes from './components/AuspiciadoresFlotantes';
 
 // REEMPLAZAMOS revalidate = 0 POR ESTO PARA FORZAR LA ACTUALIZACIÓN EN TIEMPO REAL
 export const dynamic = 'force-dynamic';
@@ -81,7 +82,7 @@ export default async function InicioSobredosis() {
       </section>
 
       {/* MARCAS ALIADAS AL FINAL DE LA PÁGINA */}
-      <SociosAliados />
+      <AuspiciadoresFlotantes />
     </main>
   );
 }
